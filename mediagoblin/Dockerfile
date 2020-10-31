@@ -96,8 +96,8 @@ RUN set -xe && \
 USER "$MEDIAGOBLIN_USER"
 WORKDIR "$APP_ROOT"
 
-ARG MEDIAGOBLIN_REPO="https://github.com/mtlynch/mediagoblin.git"
-ARG MEDIAGOBLIN_BRANCH="2020-03-26"
+ARG MEDIAGOBLIN_REPO="https://github.com/bcichonski/mediagoblin-docker"
+ARG MEDIAGOBLIN_BRANCH="compose"
 
 RUN set -xe && \
     git clone "$MEDIAGOBLIN_REPO" . && \
