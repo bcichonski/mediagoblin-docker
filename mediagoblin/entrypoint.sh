@@ -4,20 +4,12 @@ set -uxe
 
 # If host mounted a manually-created MediaGoblin config file, make a copy that
 # the MediaGoblin user can access it.
-if [ -e ./static/mediagoblin_host.ini ]; then
-  >&2 echo "Using host-defined ./static/mediagoblin.ini file"
-  cp ./static/mediagoblin_host.ini mediagoblin.ini
+if [ -e mediagoblin_host.ini ]; then
+  >&2 echo "Using host-defined mediagoblin.ini file"
+  cp mediagoblin_host.ini mediagoblin.ini
   chown "$MEDIAGOBLIN_USER:$MEDIAGOBLIN_GROUP" mediagoblin.ini
 else
   >&2 echo "No host-defined mediagoblin.ini file, using default"
-fi
-
-if [ -e ./static/init-mediagoblin.sh ]; then
-  >&2 echo "Using host-defined ./static/init-mediagoblin.sh file"
-  cp ./static/init-mediagoblin.sh init-mediagoblin.sh
-  chown "$MEDIAGOBLIN_USER:$MEDIAGOBLIN_GROUP" mediagoblin.ini
-else
-  >&2 echo "No host-defined init-mediagoblin.sh file, using default"
 fi
 
 chown \
