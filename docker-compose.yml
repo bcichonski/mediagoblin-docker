@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_HOST_AUTH_METHOD: reject
+    volumes:
+      - type: volume
+        source: mydata
+        target: /var/lib/postgresql/data
+      - ./postgres:/docker-entrypoint-initdb.d
+
+  goblin:
+    build:
+      context: ./mediagoblin
+      dockerfile: Dockerfile
+      args:
+        - MEDIAGOBLIN_ADMIN_USER=${MEDIAGOBLIN_ADMIN_USER}
+        - MEDIAGOBLIN_ADMIN_PASS=${MEDIAGOBLIN_ADMIN_PASS}
+        - MEDIAGOBLIN_ADMIN_EMAIL=${MEDIAGOBLIN_ADMIN_EMAIL}
+      labels:
+        buildby: "Bartq"
+    depends_on: 
+      - db
+
+volumes:
+  mydata:

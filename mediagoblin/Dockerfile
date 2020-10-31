@@ -46,7 +46,8 @@ RUN apt-get install --yes \
       python3-pytest-xdist \
       python3-six \
       python3-sphinx \
-      python3-webtest
+      python3-webtest \
+      python3-psycopg2
 
 # Install audio dependencies.
 RUN apt-get install --yes \
@@ -68,9 +69,11 @@ RUN apt-get install --yes \
       python3-gi
 
 # Information for MediaGoblin system account.
-ARG MEDIAGOBLIN_USER="mediagoblin"
-ARG MEDIAGOBLIN_GROUP="mediagoblin"
-
+ARG MEDIAGOBLIN_USER=mediagoblin
+ARG MEDIAGOBLIN_GROUP=mediagoblin
+ARG MEDIAGOBLIN_ADMIN_USER
+ARG MEDIAGOBLIN_ADMIN_PASS
+ARG MEDIAGOBLIN_ADMIN_EMAIL
 ARG DOMAIN="mediagoblin.example.org"
 ARG APP_ROOT="/srv/${DOMAIN}/mediagoblin"
 ARG MEDIAGOBLIN_HOME_DIR="/var/lib/mediagoblin"
@@ -129,9 +132,9 @@ RUN apt-get remove --yes \
 EXPOSE 6543
 
 # Admin user in the MediaGoblin app.
-ENV MEDIAGOBLIN_ADMIN_USER admin
-ENV MEDIAGOBLIN_ADMIN_PASS admin
-ENV MEDIAGOBLIN_ADMIN_EMAIL some@where.com
+ENV MEDIAGOBLIN_ADMIN_USER "$MEDIAGOBLIN_ADMIN_USER"
+ENV MEDIAGOBLIN_ADMIN_PASS "$MEDIAGOBLIN_ADMIN_PASS"
+ENV MEDIAGOBLIN_ADMIN_EMAIL "$MEDIAGOBLIN_ADMIN_EMAIL"
 ENV MEDIAGOBLIN_USER "$MEDIAGOBLIN_USER"
 ENV MEDIAGOBLIN_GROUP "$MEDIAGOBLIN_GROUP"
 ENV MEDIAGOBLIN_HOME_DIR "$MEDIAGOBLIN_HOME_DIR"
