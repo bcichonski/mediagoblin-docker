@@ -140,6 +140,7 @@ ENV MEDIAGOBLIN_GROUP "$MEDIAGOBLIN_GROUP"
 ENV MEDIAGOBLIN_HOME_DIR "$MEDIAGOBLIN_HOME_DIR"
 
 COPY entrypoint.sh entrypoint.sh
+COPY mediagoblin_host.ini mediagoblin_host.ini
 COPY init-mediagoblin.sh init-mediagoblin.sh
 COPY user-dev-workaround.sh user-dev-workaround.sh
 CMD ["./entrypoint.sh"]

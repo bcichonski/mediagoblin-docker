@@ -1,5 +1,5 @@
 #!/bin/bash
-
+>&2 echo "Entrypoint v. 1 bartq"
 set -uxe
 
 # If host mounted a manually-created MediaGoblin config file, make a copy that
