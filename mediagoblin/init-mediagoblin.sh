@@ -11,6 +11,7 @@ bin/gmg dbupdate
     --password "$MEDIAGOBLIN_ADMIN_PASS" \
     --email "$MEDIAGOBLIN_ADMIN_EMAIL" && \
   bin/gmg makeadmin "$MEDIAGOBLIN_ADMIN_USER"
+  bin/gmg dbupdate
 } || true
 
 # Create a default mediagoblin.ini if none has been specified.

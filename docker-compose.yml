@@ -6,11 +6,12 @@ services:
     image: postgres
     restart: always
     environment:
+      POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_HOST_AUTH_METHOD: reject
     volumes:
       - type: volume
-        source: mydata
+        source: pgdata
         target: /var/lib/postgresql/data
       - ./postgres:/docker-entrypoint-initdb.d
 
@@ -24,8 +25,15 @@ services:
         - MEDIAGOBLIN_ADMIN_EMAIL=${MEDIAGOBLIN_ADMIN_EMAIL}
       labels:
         buildby: "Bartq"
+    volumes:
+      - type: volume
+        source: mgdata
+        target: /var/lib/mediagoblin
     depends_on: 
       - db
+    expose:
+      - "6543"
 
 volumes:
-  mydata:
+  pgdata:
+  mgdata:
