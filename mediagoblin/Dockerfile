@@ -113,6 +113,12 @@ RUN set -xe && \
     ./bin/python setup.py develop --upgrade && \
     ./bin/pip install flup==1.0.3
 
+# Install mediagoblin-private
+RUN set -xe && \
+    ./bin/pip install mediagoblin-private \
+    ../mediagoblin/bin/python setup.py build \
+    ../mediagoblin/bin/python setup.py install
+
 RUN set -xe && \
     chgrp \
       --no-dereference \
