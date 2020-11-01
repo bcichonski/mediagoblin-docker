@@ -3,6 +3,7 @@
 set -uxe
 
 bin/gmg dbupdate
+bin/gmg assetlink
 
 # Ignore failure to add admin user because they may already exist.
 {
