@@ -115,8 +115,8 @@ RUN set -xe && \
 
 # Install mediagoblin-private
 RUN set -xe && \
-    ./bin/pip install mediagoblin-private \
-    ../mediagoblin/bin/python setup.py build \
+    ./bin/pip install mediagoblin-private && \
+    ../mediagoblin/bin/python setup.py build && \
     ../mediagoblin/bin/python setup.py install
 
 RUN set -xe && \
