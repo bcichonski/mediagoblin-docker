@@ -116,8 +116,8 @@ RUN set -xe && \
 # Install mediagoblin-private
 RUN set -xe && \
     ./bin/pip install mediagoblin-private && \
-    ../mediagoblin/bin/python setup.py build && \
-    ../mediagoblin/bin/python setup.py install
+    ./bin/python setup.py build && \
+    ./bin/python setup.py install
 
 RUN set -xe && \
     chgrp \
@@ -152,4 +152,5 @@ COPY user-dev-workaround.sh user-dev-workaround.sh
 RUN chmod +x ./entrypoint.sh
 RUN chmod +x init-mediagoblin.sh
 RUN chmod +x user-dev-workaround.sh
+RUN chown mediagoblin:mediagoblin *.sh
 CMD ["./entrypoint.sh"]
