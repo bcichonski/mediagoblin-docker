@@ -12,6 +12,10 @@ else
   >&2 echo "No host-defined mediagoblin.ini file, using default"
 fi
 
+ls -al
+ls -al plugin
+ls -al mediagoblin
+
 chown \
   --no-dereference \
   --recursive \

@@ -103,7 +103,11 @@ RUN set -xe && \
     git clone "$MEDIAGOBLIN_REPO" . && \
     git checkout "$MEDIAGOBLIN_BRANCH" && \
     git submodule sync && \
-    git submodule update --force --init --recursive && \
+    git submodule update --force --init --recursive
+
+COPY --chown=mediagoblin:mediagoblin mediagoblin_private/* mediagoblin/plugins/mediagoblin_private/
+
+RUN set -xe && \    
     ./bootstrap.sh && \
     VIRTUALENV_FLAGS='--system-site-packages' ./configure --with-python3 && \
     make
@@ -143,7 +147,6 @@ COPY entrypoint.sh entrypoint.sh
 COPY mediagoblin_host.ini mediagoblin_host.ini
 COPY init-mediagoblin.sh init-mediagoblin.sh
 COPY user-dev-workaround.sh user-dev-workaround.sh
-RUN chmod +x ./entrypoint.sh
-RUN chmod +x init-mediagoblin.sh
-RUN chmod +x user-dev-workaround.sh
+RUN chmod +x *.sh
+RUN chown mediagoblin:mediagoblin *.sh
 CMD ["./entrypoint.sh"]
