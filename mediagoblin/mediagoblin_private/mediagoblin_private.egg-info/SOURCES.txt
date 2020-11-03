@@ -1,0 +1,9 @@
+MANIFEST.in
+README.rst
+setup.py
+mediagoblin_private/__init__.py
+mediagoblin_private/config_spec.ini
+mediagoblin_private.egg-info/PKG-INFO
+mediagoblin_private.egg-info/SOURCES.txt
+mediagoblin_private.egg-info/dependency_links.txt
+mediagoblin_private.egg-info/top_level.txt

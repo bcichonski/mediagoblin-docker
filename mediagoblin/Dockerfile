@@ -105,12 +105,17 @@ RUN set -xe && \
     git submodule sync && \
     git submodule update --force --init --recursive
 
-COPY --chown=mediagoblin:mediagoblin mediagoblin_private/* mediagoblin/plugins/mediagoblin_private/
+COPY --chown=mediagoblin:mediagoblin mediagoblin_private/ mediagoblin_private/
 
 RUN set -xe && \    
     ./bootstrap.sh && \
     VIRTUALENV_FLAGS='--system-site-packages' ./configure --with-python3 && \
     make
+
+# Add mediagoblin_private
+RUN set -xe && \
+    cd mediagoblin_private/ && \
+    ../bin/python setup.py develop --upgrade
 
 # Workaround for dependencies that make fails to install.
 RUN set -xe && \
